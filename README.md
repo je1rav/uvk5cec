@@ -113,6 +113,9 @@ Anyway, have fun.
    * LCD interference crash fix
    * many others...
 
+## Added feature:
+* maximum output power limitation < 1 W
+
  ## Manual
 
 Up to date manual is available in the [Wiki section](https://github.com/egzumer/uv-k5-firmware-custom/wiki)
