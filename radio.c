@@ -488,17 +488,14 @@ void RADIO_ConfigureSquelchAndOutputPower(VFO_Info_t *pInfo)
 		Txp[1] /= 3;
 		Txp[2] /= 3;
 	}
-	else {
-		Txp[0] /= 2;  //OUTPUT_POWER is reduced　to 1W
-		Txp[1] /= 2;  //OUTPUT_POWER is reduced　to 1W
-		Txp[2] /= 2;  //OUTPUT_POWER is reduced　to 1W
-	}
-#else
-	Txp[0] /= 2;  //OUTPUT_POWER is reduced
+#endif
+	
+#ifdef ENABLE_TX_POWER_LIMIT_1W
+	Txp[0] /= 2;  //OUTPUT_POWER is reduced　to 1W
 	Txp[1] /= 2;  //OUTPUT_POWER is reduced　to 1W
 	Txp[2] /= 2;  //OUTPUT_POWER is reduced　to 1W
 #endif
-
+	
 	pInfo->TXP_CalculatedSetting = FREQUENCY_CalculateOutputPower(
 		Txp[0],
 		Txp[1],
