@@ -490,10 +490,19 @@ void RADIO_ConfigureSquelchAndOutputPower(VFO_Info_t *pInfo)
 	}
 #endif
 	
-#ifdef ENABLE_TX_POWER_LIMIT_1W
-	Txp[0] /= 2;  //OUTPUT_POWER is reduced　to 1W
-	Txp[1] /= 2;  //OUTPUT_POWER is reduced　to 1W
-	Txp[2] /= 2;  //OUTPUT_POWER is reduced　to 1W
+#ifdef ENABLE_TX_POWER_LIMIT_1W     //OUTPUT_POWER is limitted　to 1W
+	uint8_t Txp_CAL[3];
+	EEPROM_ReadBuffer(0x1ED0 + (Band * 16) + (pInfo->OUTPUT_POWER * 3), Txp_CAL, 3);
+	if (Band == BAND6_400MHz && Txp[0]>(Txp[0]_CAL*5)/10){
+		Txp[0] = (Txp[0]_CAL * 5) / 10 ;
+		Txp[1] = (Txp[1]_CAL * 5) / 10 ;
+		Txp[2] = (Txp[2]_CAL * 5) / 10 ;
+	}
+	else if (Band == BAND3_137MHz && Txp[0]>(Txp[0]_CAL*5)/15){
+		Txp[0] = (Txp[0]_CAL * 5) / 15 ;
+		Txp[1] = (Txp[1]_CAL * 5) / 15 ;
+		Txp[2] = (Txp[2]_CAL * 5) / 15 ;
+	}
 #endif
 	
 	pInfo->TXP_CalculatedSetting = FREQUENCY_CalculateOutputPower(
