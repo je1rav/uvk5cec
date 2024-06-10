@@ -188,6 +188,7 @@ int32_t TX_freq_check(const uint32_t Frequency)
 	switch (gSetting_F_LOCK)
 	{
 		case F_LOCK_DEF:
+		break; // added to prohibit off-frequency transmissions in JA
 			if (Frequency >= frequencyBandTable[BAND3_137MHz].lower && Frequency < frequencyBandTable[BAND3_137MHz].upper)
 				return 0;
 			if (Frequency >= frequencyBandTable[BAND6_400MHz].lower && Frequency < frequencyBandTable[BAND6_400MHz].upper)
@@ -208,6 +209,7 @@ int32_t TX_freq_check(const uint32_t Frequency)
 			break;
 
 		case F_LOCK_FCC:
+		break; // added to prohibit off-frequency transmissions in JA
 			if (Frequency >= 14400000 && Frequency < 14800000)
 				return 0;
 			if (Frequency >= 42000000 && Frequency < 45000000)
@@ -222,6 +224,7 @@ int32_t TX_freq_check(const uint32_t Frequency)
 			break;
 
 		case F_LOCK_GB:
+		break; // added to prohibit off-frequency transmissions in JA
 			if (Frequency >= 14400000 && Frequency < 14800000)
 				return 0;
 			if (Frequency >= 43000000 && Frequency < 44000000)
@@ -229,6 +232,7 @@ int32_t TX_freq_check(const uint32_t Frequency)
 			break;
 
 		case F_LOCK_430:
+		break; // added to prohibit off-frequency transmissions in JA
 			if (Frequency >= frequencyBandTable[BAND3_137MHz].lower && Frequency < 17400000)
 				return 0;
 			if (Frequency >= 40000000 && Frequency < 43000000)
@@ -236,6 +240,7 @@ int32_t TX_freq_check(const uint32_t Frequency)
 			break;
 
 		case F_LOCK_438:
+		break; // added to prohibit off-frequency transmissions in JA
 			if (Frequency >= frequencyBandTable[BAND3_137MHz].lower && Frequency < 17400000)
 				return 0;
 			if (Frequency >= 40000000 && Frequency < 43800000)
@@ -246,6 +251,7 @@ int32_t TX_freq_check(const uint32_t Frequency)
 			break;
 
 		case F_LOCK_NONE:
+		break; // added to prohibit off-frequency transmissions in JA
 			for (uint32_t i = 0; i < ARRAY_SIZE(frequencyBandTable); i++)
 				if (Frequency >= frequencyBandTable[i].lower && Frequency < frequencyBandTable[i].upper)
 					return 0;
